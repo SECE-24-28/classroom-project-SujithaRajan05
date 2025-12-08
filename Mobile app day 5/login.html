@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Recharge App</title>
+    <link rel="stylesheet" href="login.css">
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <h1 class="logo"> Sky RechargeApp</h1>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="login.html">Login</a></li>
+            <li><a href="signup.html">Signup</a></li>
+        </ul>
+    </nav>
+
+    <!-- LOGIN BOX -->
+    <div class="login-box">
+        <h2>Login</h2>
+
+        <!-- LOGIN INPUTS WITH IDs -->
+        <input type="text" id="email" placeholder="Email">
+        <input type="password" id="password" placeholder="Password">
+
+        <!-- LOGIN BUTTON WITH ID -->
+        <button id="loginBtn">Login</button>
+
+      <p>Don't have an account? <a href="signup.html">Signup</a></p>
+
+    </div>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        document.getElementById("loginBtn").addEventListener("click", function () {
+
+            let email = document.getElementById("email").value;
+            let password = document.getElementById("password").value;
+
+            let savedEmail = localStorage.getItem("email");
+            let savedPassword = localStorage.getItem("password");
+
+            if (email === savedEmail && password === savedPassword) {
+                alert("Login Successful!");
+                window.location.href = "recharge.html";   // Redirect to recharge page
+            } else {
+                alert("Invalid Email or Password!");
+            }
+        });
+    </script>
+
+</body>
+</html>
+

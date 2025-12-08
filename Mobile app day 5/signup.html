@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup -  Sky Recharge App</title>
+    <link rel="stylesheet" href="signup.css">
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <h1 class="logo"> Sky RechargeApp</h1>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="login.html">Login</a></li>
+            <li><a href="signup.html">Signup</a></li>
+        </ul>
+    </nav>
+
+
+    <!-- SIGNUP BOX -->
+    <div class="signup-box">
+        <h2>Create Account</h2>
+
+        <!-- SIGNUP INPUTS WITH IDs -->
+        <input type="text" id="name" placeholder="Full Name">
+        <input type="text" id="email" placeholder="Email">
+        <input type="password" id="password" placeholder="Password">
+        <input type="password" id="confirmPassword" placeholder="Confirm Password">
+
+        <!-- SIGNUP BUTTON -->
+        <button id="signupBtn">Signup</button>
+<p>Already have an account? <a href="login.html">Login</a></p>
+    </div>
+
+    <!-- JAVASCRIPT FOR SIGNUP -->
+    <script>
+        document.getElementById("signupBtn").addEventListener("click", function () {
+
+            let name = document.getElementById("name").value;
+            let email = document.getElementById("email").value;
+            let password = document.getElementById("password").value;
+            let confirmPassword = document.getElementById("confirmPassword").value;
+
+            // VALIDATION
+            if (name === "" || email === "" || password === "" || confirmPassword === "") {
+                alert("All fields are required!");
+                return;
+            }
+
+            if (password !== confirmPassword) {
+                alert("Passwords do not match!");
+                return;
+            }
+
+            // SAVE TO localStorage
+            localStorage.setItem("name", name);
+            localStorage.setItem("email", email);
+            localStorage.setItem("password", password);
+
+            alert("Signup Successful!");
+            window.location.href = "login.html";   // Redirect to login page
+        });
+    </script>
+
+</body>
+</html>
+

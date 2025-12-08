@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Sky Recharge - Mobile Recharge</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100">
+
+    <!-- NAVBAR -->
+    <nav class="bg-pink-700 text-white p-4 flex justify-between">
+        <h1 class="text-2xl font-bold"> Sky RechargeApp</h1>
+        <a href="index.html" class="text-white text-lg">Logout</a>
+    </nav>
+
+    <!-- MAIN FORM -->
+    <div class="max-w-md mx-auto mt-10 bg-white p-6 rounded shadow">
+        <h2 class="text-2xl font-bold text-center mb-4">Mobile Recharge</h2>
+
+        <label class="block mb-2 font-semibold">Mobile Number</label>
+        <input id="mobile" type="text" class="w-full p-2 border rounded mb-4">
+
+        <label class="block mb-2 font-semibold">Operator</label>
+        <select id="operator" class="w-full p-2 border rounded mb-4">
+            <option value="Jio">Jio</option>
+            <option value="Airtel">Airtel</option>
+            <option value="Vi">Vi</option>
+            <option value="BSNL">BSNL</option>
+        </select>
+
+        <label class="block mb-2 font-semibold">Amount</label>
+        <input id="amount" type="number" class="w-full p-2 border rounded mb-4">
+
+        <button id="rechargeBtn" class="bg-blue-600 w-full text-white p-2 rounded hover:bg-blue-700">
+            Recharge Now
+        </button>
+
+        <p id="msg" class="text-center mt-4 font-semibold"></p>
+    </div>
+
+    <script>
+        document.getElementById("rechargeBtn").addEventListener("click", function () {
+            let number = document.getElementById("mobile").value;
+            let operator = document.getElementById("operator").value;
+            let amount = document.getElementById("amount").value;
+
+            if (number === "" || amount === "") {
+                document.getElementById("msg").innerText = "Please fill all fields!";
+                document.getElementById("msg").style.color = "red";
+                return;
+            }
+
+            // ---------- SIMULATED API ----------
+            // This is temporary. Later we can replace with real API.
+            setTimeout(() => {
+                localStorage.setItem("lastRecharge", JSON.stringify({
+                    number: number,
+                    operator: operator,
+                    amount: amount
+                }));
+
+                window.location.href = "success.html";
+            }, 1200);
+        });
+    </script>
+
+</body>
+</html>

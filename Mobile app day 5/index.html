@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sky Recharge Platform</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f3f2f3;
+    }
+
+    /* Navbar */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #b74176;
+      padding: 15px 30px;
+      color: #010609;
+    }
+    .navbar .logo {
+      font-size: 24px;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+    .navbar .nav-links {
+      display: flex;
+      gap: 20px;
+    }
+    .navbar .nav-links a {
+      color: #0b0d0f;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .navbar .nav-links a:hover {
+      text-decoration: underline;
+    }
+
+    /* Hero */
+    .hero {
+      text-align: center;
+      padding: 60px 20px;
+      background: linear-gradient(to right, #B7415E, #B7415E);
+      color: #080809;
+    }
+    .hero h1 {
+      font-size: 42px;
+      margin-bottom: 20px;
+    }
+    .hero p {
+      font-size: 18px;
+      margin-bottom: 30px;
+    }
+    .hero button {
+      padding: 12px 25px;
+      font-size: 16px;
+      background-color: #ff9800;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      color: white;
+      font-weight: bold;
+    }
+    .hero button:hover {
+      background-color: #e68900;
+    }
+
+    /* Plans container */
+    .plans {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      padding: 50px 20px;
+      flex-wrap: wrap;
+    }
+
+    .plan-card {
+      background-color: #f1f2f3;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      padding: 20px;
+      width: 250px;
+      text-align: center;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    .plan-card h2 {
+      color: #a10d95;
+      margin-bottom: 10px;
+    }
+
+    .plan-card p {
+      margin: 10px 0;
+      font-size: 15px;
+    }
+
+    .plan-card button {
+      margin-top: 15px;
+      padding: 10px 20px;
+      background-color: #f3214f;
+      border: none;
+      border-radius: 5px;
+      color: white;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .plan-card button:hover {
+      background-color: #a1410d;
+    }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #944465;
+      color: white;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <div class="navbar">
+    <div class="logo">Sky Recharge</div>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="login.html">Login</a>
+      <a href="signup.html">Signup</a>
+    </div>
+  </div>
+
+  <!-- Hero Section -->
+  <div class="hero" style="font-family:'Times New Roman'; text-align:center; background:#f8a5c2; padding:40px; color:black;">
+    <h1>Welcome to Sky Recharge App</h1>
+    <p>Enjoy unlimited calls!</p>
+    <button onclick="window.location.href='login.html'">
+      Recharge Now
+    </button>
+  </div>
+
+  <!-- Plans Section (Dynamic from API) -->
+  <div class="plans" id="plansContainer">
+    <!-- API Plans Will Load Automatically -->
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <p>&copy; 2025 Sky Recharge. All rights reserved.</p>
+  </div>
+
+
+
+  <!-- API Integration Script -->
+  <script>
+    async function loadPlans() {
+      try {
+        const response = await fetch("https://69329a66e5a9e342d26ff2d3.mockapi.io/SkyRecharge");
+        const plans = await response.json();
+
+        const container = document.getElementById("plansContainer");
+        container.innerHTML = ""; 
+
+        plans.forEach(plan => {
+          container.innerHTML += `
+            <div class="plan-card">
+              <h2>₹${plan.price} Plan</h2>
+              <p>${plan.data}</p>
+              <p>${plan.calls}</p>
+              <p>Validity: ${plan.validity}</p>
+              <button onclick="window.location.href='login.html'">Recharge</button>
+            </div>
+          `;
+        });
+      } 
+      catch (err) {
+        console.log("Error loading plans:", err);
+      }
+    }
+
+    loadPlans();
+  </script>
+
+</body>
+</html>

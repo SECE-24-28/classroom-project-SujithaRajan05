@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recharge Successful</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gradient-to-br from-green-200 to-green-100 flex items-center justify-center min-h-screen">
+
+    <div class="bg-white p-8 rounded-2xl shadow-2xl w-full max-w-md transform transition-all scale-105">
+
+        <!-- Success Icon -->
+        <div class="flex justify-center mb-4">
+            <div class="bg-green-600 text-white p-3 rounded-full shadow-lg animate-bounce">
+                ✔
+            </div>
+        </div>
+
+        <h1 class="text-3xl font-extrabold text-green-700 text-center">
+            Recharge Successful!
+        </h1>
+
+        <p class="text-gray-600 text-center mt-2">
+            Your recharge has been processed successfully.
+        </p>
+
+        <!-- Card -->
+        <div class="mt-6 bg-gray-50 p-5 rounded-xl shadow-inner border border-gray-200">
+
+            <h3 class="text-xl font-bold mb-3 text-gray-700">
+                Recharge Details
+            </h3>
+
+            <div class="space-y-2 text-gray-700 text-sm">
+                <p><strong class="font-semibold">Mobile Number:</strong> <span id="mobile"></span></p>
+                <p><strong class="font-semibold">Operator:</strong> <span id="operator"></span></p>
+                <p><strong class="font-semibold">Amount:</strong> ₹<span id="amount"></span></p>
+                <p><strong class="font-semibold">Date & Time:</strong> <span id="date"></span></p>
+                <p><strong class="font-semibold">Transaction ID:</strong> <span id="txnid"></span></p>
+            </div>
+
+        </div>
+
+        <!-- Home Button -->
+        <a href="index.html"
+            class="mt-6 block text-center bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg font-semibold shadow-lg transition">
+            Go to Home
+        </a>
+    </div>
+
+    <script>
+        // Fetch stored recharge details
+        let recharge = JSON.parse(localStorage.getItem("lastRecharge"));
+
+        if (recharge) {
+            document.getElementById("mobile").innerText = recharge.number;
+            document.getElementById("operator").innerText = recharge.operator;
+            document.getElementById("amount").innerText = recharge.amount;
+
+            // Current date & time
+            let now = new Date();
+            document.getElementById("date").innerText = now.toLocaleString();
+
+            // Transaction ID (random)
+            let txnId = "TXN" + Math.floor(1000000000 + Math.random() * 9000000000);
+            document.getElementById("txnid").innerText = txnId;
+
+        } else {
+            document.body.innerHTML =
+                `<h2 class="text-center text-red-600 text-xl font-bold">Error: No recharge data found!</h2>`;
+        }
+    </script>
+
+</body>
+
+</html>
+
+
